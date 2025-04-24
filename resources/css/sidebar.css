@@ -1,0 +1,62 @@
+
+    body {
+        margin: 0;
+        background: #F5F7FA;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 250px;
+        background-color: #1A253D;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+        border-right: 1px solid #ddd;
+    }
+
+    li a, .logout-button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #edebeb;
+        padding: 12px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+
+
+    .sidebar-logo {
+        height: 100px;
+        margin: 20px auto 10px auto;
+        display: block;
+    }
+
+    .sidebar-bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    button.logout-button {
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 16px;
+        padding: 12px 20px;
+        cursor: pointer;
+        color: #f3eeee;
+    }
+
+    button.logout-button i {
+        margin-right: 10px;
+    }
+
+    button.logout-button:hover {
+        background-color: #fcfdff;
+        color: #1A73E8;
+    }
