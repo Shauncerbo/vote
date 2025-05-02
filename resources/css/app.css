@@ -18,3 +18,5 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@import"https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"

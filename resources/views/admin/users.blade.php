@@ -1,6 +1,5 @@
 @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/department-admin.css'])
-@include('department-admin.sidebar')
-
+@include('admin.sidebar')
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 
@@ -14,11 +13,10 @@
 
 
 <style>
-    li a.active-elections, li a:hover, .logout-button:hover {
-    background-color: #ffffff;
-    color: #1A73E8;
+    li a.active-position, li a:hover, .logout-button:hover {
+        background-color: #ffffff;
+        color: #1A73E8;
     }
-  
 
     .row{
         margin-top: 10px;
@@ -41,15 +39,18 @@
     transition: all 0.3s ease;
     margin-bottom: 10px;
 }
-    
+
+
+
 
 </style>
 
+@include('admin.modals.addUser-modal')
+
 <nav class="navbar fixed-top" style="margin-left: 250px;">
     <div class="container-fluid" style="margin-right: 250px;">
-        <p class="navbar-brand" href="#" status='disable'>Manage Election</p>
+        <p class="navbar-brand" href="#" status='disable'>Manage User</p>
     </div>
-
 </nav>
 
 <div class="container-fluid mt-5" style="margin-left: 250px; padding-top: 70px;">
@@ -64,7 +65,7 @@
                         <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#addUserModal" >
                             Add User
                         </button>
-                        <button class="btn btn-primary " onclick="window.location.href='#'">
+                        <button class="btn btn-primary " onclick="window.location.href='{{ route('userTypes.index') }}'">
                             Add User Type
                         </button>
                     </div>
@@ -78,20 +79,24 @@
                 <thead>
    
                     <tr>
-                        <th>Title</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                        <th>Full Name</th>
+                        <th>Sex</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>User Type</th>
                         <th>Department</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ( $elections as $election)
+                    @foreach ( $users as $user)
                     <tr>
-                        <td>{{$election->title ?? 'N/A'}}</td>
-                        <td>{{$election->start_date ?? 'N/A'}}</td>
-                        <td>{{$election->end_date ?? 'N/A'}}</td>
-                        <td>{{$election->department->department_name ?? 'N/A'}}</td>
+                        <td>{{$user->full_name ?? 'N/A'}}</td>
+                        <td>{{$user->Sex ?? 'N/A'}}</td>
+                        <td>{{$user->ContactNumber ?? 'N/A'}}</td>
+                        <td>{{$user->email ?? 'N/A'}}</td>
+                        <td>{{$user->userType->userType_name ?? 'N/A'}}</td>
+                        <td>{{$user->department->department_name ?? 'N/A'}}</td>
                         <td>
                             <a href="#" class="btn btn-warning btn-sm">Edit</a>
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>

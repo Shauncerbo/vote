@@ -34,7 +34,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('show.AdminIndex')->with('success', 'Login successful');
+            return redirect()->route('departments.index')->with('success', 'Login successful');
         }
 
         throw ValidationException::withMessages([

@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +19,15 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'FirstName',
+        'MiddleName',
+        'LastName',
+        'Sex',
+        'ContactNumber',
         'email',
         'password',
+        'userType_id',
+        'department_id',
     ];
 
     /**
@@ -45,4 +52,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'department_id');
+    }
+    
+
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class, 'userType_id', 'userType_id');
+    }
+
+    public function getFullNameAttribute()
+    {
+       
+        $fullName = $this->FirstName . ' ' . $this->MiddleName . ' ' . $this->LastName;
+
+        
+        return $fullName ?: 'N/A'; 
+    }
+    
 }
