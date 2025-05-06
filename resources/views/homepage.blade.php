@@ -1,4 +1,4 @@
-@vite(['resources/js/app.js'])
+<!-- @vite(['resources/js/app.js'])
 
 @include(('navbar'))
 <style>
@@ -73,7 +73,7 @@
 
 <div class="container hero-section">
     <div class="card-body">
-        <img src="{{ asset('storage/schoolIcon.png') }}" alt="Logo" class="navbarlogo">
+        <img src="{{ asset('schoolIcon.png') }}" alt="Logo" class="navbarlogo">
         <div class="hero-content">
             <h1 class="hero-title">Welcome to School Voting System</h1>
             <p class="hero-subtitle">Secure, Reliable, and Transparent Voting Solutions</p>
@@ -84,4 +84,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
