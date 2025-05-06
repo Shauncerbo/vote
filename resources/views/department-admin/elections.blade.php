@@ -44,6 +44,7 @@
     
 
 </style>
+@include('department-admin.modals.addElection')
 
 <nav class="navbar fixed-top" style="margin-left: 250px;">
     <div class="container-fluid" style="margin-right: 250px;">
@@ -57,15 +58,12 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h3 class="mb-0">Users List</h3>
+                    <h3 class="mb-0">Election List</h3>
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#addUserModal" >
-                            Add User
-                        </button>
-                        <button class="btn btn-primary " onclick="window.location.href='#'">
-                            Add User Type
+                        <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#addElectionModal" >
+                            <i class="fas fa-plus me-1"></i>Create Election
                         </button>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\userTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\StudentRegistrationController;
 
 Route::resource('departments', DepartmentController::class);
 
@@ -17,7 +18,9 @@ Route::resource('departments', DepartmentController::class);
 
 
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::get('/signup', [AuthController::class, 'showSignup'])->name('show.signup');
+    Route::get('/signup', [StudentRegistrationController::class, 'index'])->name('show.signup');
+    Route::post('/signup', [StudentRegistrationController::class, 'store'])->name('signup-submit');
+    
 
 
 
@@ -26,6 +29,17 @@ Route::resource('departments', DepartmentController::class);
 
 
     Route::middleware('auth')->group(function () {
+
+        //student registration
+        Route::delete('/approveVoters/{student_id}', [StudentRegistrationController::class, 'destroy'])->name('declineVoter');
+        Route::get('/approveVoters', [StudentRegistrationController::class, 'showAllNeedsApproval'])->name('approveVoters');
+        Route::post('/approveVoter/{student_id}', [StudentRegistrationController::class, 'approve'])->name('approveUser');
+
+        
+        
+
+
+
   
         Route::view('/election-admin', 'admin.election-admin')->name('election-admin');
 
@@ -45,14 +59,17 @@ Route::resource('departments', DepartmentController::class);
         Route::get('/userTypes', [UserTypeController::class, 'index'])->name('userTypes.index');
         Route::get('/userTypes/edit/{userType_id}', [UserTypeController::class, 'edit'])->name('userTypes.edit');
         Route::put('/userTypes/{userType_id}', [UserTypeController::class, 'update'])->name('userTypes.update');
+        
 
         // User Routes
         Route::get('/manage-users', [UserController::class, 'index'])->name('view-users');
         Route::post('/create-users', [UserController::class, 'store'])->name('create-user');
+        Route::get('/voters-only', [UserController::class, 'showVoterOnly'])->name('voters-only');
 
 
         // election controller
         Route::get('/elections', [ElectionController::class, 'index'])->name('view-election');
+        Route::post('/elections', [ElectionController::class, 'store'])->name('create-election');
         });
 
     // Department Admin Routes

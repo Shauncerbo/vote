@@ -19,7 +19,7 @@ class UserController extends Controller
         $users = User::with(['userType', 'department'])->get();
         $userTypes = UserType::all();
         $departments = Department::all();
-        
+
 
       
         return view('admin.users', compact('users', 'userTypes', 'departments'));
@@ -99,4 +99,15 @@ class UserController extends Controller
     {
         //
     }
+
+    public function showVoterOnly()
+{
+    $users = User::voters()       
+    ->with('department') 
+    ->get();
+
+    return view('department-admin.voters', compact('users'));
+    
+    
+}
 }

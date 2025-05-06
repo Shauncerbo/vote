@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'password',
         'userType_id',
         'department_id',
+        'student_id',
     ];
 
     /**
@@ -71,6 +73,18 @@ class User extends Authenticatable
 
         
         return $fullName ?: 'N/A'; 
+    }
+
+    public function scopeVoters($query)
+    {
+        return $query->whereHas('userType', function($q) {
+            $q->where('userType_name', 'Voter');
+        });
+    }
+
+    public function StudentRegistration()
+    {
+        return $this->belongsTo(StudentRegistration::class, 'student_id', 'student_id');
     }
     
 }

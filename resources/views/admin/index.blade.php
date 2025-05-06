@@ -63,7 +63,7 @@
             <h1 class="text">Available Department</h1>
         </div>
         <div class="col-md-6 d-flex justify-content-end">
-            <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addDepartmentModal">Add Department</button>
+            <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addDepartmentModal"><i class="fas fa-plus me-1"></i>Add Department</button>
         </div>
      
     </div>

@@ -23,7 +23,7 @@
             </div>
 
         <li><a class="active" href='#'><i class="fas fa-cog"></i> Manage</a></li>
-        <li><a class="active-voters" href={{ route('voters-DeptAdmin') }}><i class="fas fa-id-card"></i> Voters</a></li>
+        <li><a class="active-voters" href={{ route('voters-only') }}><i class="fas fa-id-card"></i> Voters</a></li>
         <li><a class="active-candidates" href={{ route('candidates-DeptAdmin') }}><i class="fas fa-user-tie"></i> Candidates</a></li>
         <li><a class="active-elections" href={{ route('view-election') }}><i class="fas fa-vote-yea"></i> Elections</a></li>
         <li><a class="active-account" href={{ route('manageAcc-DeptAdmin') }}><i class="fas fa-user-edit"></i> Manage Account</a></li>

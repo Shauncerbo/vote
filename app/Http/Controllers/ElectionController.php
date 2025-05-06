@@ -32,9 +32,34 @@ class ElectionController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'start_date' => 'required|date|after_or_equal:now',
+        'end_date' => 'required|date|after:start_date',
+        'department_id' => 'required|exists:departments,department_id',
+        'is_active' => 'sometimes|boolean' // Optional if you want to set active status
+    ]);
 
+    try {
+        Election::create([
+            'title' => $validatedData['title'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'],
+            'department_id' => $validatedData['department_id'],
+            'is_active' => $validatedData['is_active'] ?? false // Default to false if not provided
+        ]);
+
+        return redirect()->route('view-election')
+                       ->with('success', 'Election created successfully!');
+
+    } catch (\Exception $e) {
+        \Log::error('Election creation failed: ' . $e->getMessage());
+        return redirect()->back()
+                       ->withInput()
+                       ->with('error', 'Failed to create election. Please try again.');
     }
+}
 
     /**
      * Display the specified resource.

@@ -63,10 +63,10 @@
                 <div class="col-md-6">
                     <div class="d-flex justify-content-end gap-2">
                         <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#addUserModal" >
-                            Add User
+                            <i class="fas fa-plus me-1"></i>Add User
                         </button>
                         <button class="btn btn-primary " onclick="window.location.href='{{ route('userTypes.index') }}'">
-                            Add User Type
+                            <i class="fas fa-plus me-1"></i>Add User Type
                         </button>
                     </div>
                 </div>
