@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('123456'), // The password will be hashed here
             'remember_token' => Str::random(10), // Random token for remember_token
             'department_id' => 10,
-            'position_id' => 2,
+            'userType_id' => 1,
         ]);
         
 

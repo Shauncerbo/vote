@@ -93,9 +93,17 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="contactNumber" class="form-label">Contact Number</label>
-                            <input type="tel" id="contactNumber" name="contactNumber" class="form-control" required placeholder="+69 ">
-                            <div class="invalid-feedback">Please enter a Phone Number.</div>
-
+                            <input type="tel" 
+                                   id="contactNumber" 
+                                   name="contactNumber" 
+                                   class="form-control" 
+                                   required 
+                                   pattern="[0-9]{11}"
+                                   maxlength="11"
+                                   placeholder="Enter 11-digit number"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                   onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            <div class="invalid-feedback">Please enter a valid 11-digit phone number.</div>
                         </div>
                     </div>
                 </div>
@@ -123,6 +131,17 @@
                         event.preventDefault();
                         event.stopPropagation();
                     }
+                    
+                    // Additional phone number validation
+                    var phoneInput = document.getElementById('contactNumber');
+                    if (phoneInput.value.length !== 11) {
+                        phoneInput.setCustomValidity('Phone number must be exactly 11 digits');
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        phoneInput.setCustomValidity('');
+                    }
+                    
                     form.classList.add('was-validated');
                 }, false);
             });

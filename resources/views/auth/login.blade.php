@@ -4,70 +4,89 @@
 
 <style>
     html, body {
-    overflow: hidden; /* Disables scrolling completely */
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-    .login-page {
-        display: flex;
-        min-height: 100vh; /* Changed from height to min-height */
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        
+        overflow: hidden;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #f8fafc;
     }
 
-    .left-side {
+    .login-page {
+        display: flex;
+        min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .login-left {
         flex: 1;
-        background-color: #ffffff;
+        background: #fff;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* This centers vertically */
         align-items: center;
+        justify-content: flex-start;
         padding: 2rem;
-        position: relative;
-        overflow: hidden;
+        padding-top: 7rem;
+    }
+
+    .login-logo {
+        max-width: 300px;
+        margin-bottom: 1.5rem;
+        margin-top: 6rem;
     }
 
     .university-title {
-        font-size: 1.8rem;
-        font-weight: 700;
+        font-size: 2rem;
+        font-weight: bold;
         color: #1A253D;
         margin-bottom: 0.5rem;
-        letter-spacing: 0.5px;
+        margin-top: 2rem;
     }
 
     .university-tagline {
         color: #506183;
-        font-size: 1rem;
-        font-weight: 500;
-        font-style: italic;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
 
-    .right-side {
+    .login-right {
         flex: 1;
-        background-color: #1A253D;
-        background-image: linear-gradient(135deg, #1A253D 0%, #0f192e 100%);
+        background: #1A253D;
+        background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.01) 0 2px, transparent 2px 40px);
         display: flex;
-        justify-content: center;
-        align-items: center; /* This centers vertically */
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         padding: 2rem;
+        padding-top: 5rem;
     }
 
     .login-card {
-        background-color: #ffffff;
-        padding: 2.5rem;
-        border-radius: 12px;
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        padding: 2.5rem 2rem;
         width: 100%;
-        max-width: 420px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        margin-top: -2rem; /* This pulls the card up slightly */
+        max-width: 400px;
+        z-index: 1;
     }
 
     .login-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 0.5rem;
         color: #1A253D;
-        font-weight: 700;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .login-subtitle {
+        color: #64748b;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
     
     .input-group {
@@ -78,78 +97,119 @@
     .form-label {
         display: block;
         margin-bottom: 0.5rem;
-        color: #4b5563;
+        color: #475569;
         font-weight: 600;
         font-size: 0.95rem;
+        letter-spacing: 0.3px;
     }
 
     .form-input {
         width: 100%;
-        padding: 0.875rem 1rem;
-        border: 1.5px solid #e5e7eb;
-        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
         font-size: 1rem;
-        transition: all 0.2s ease;
-        background-color: #f9fafb;
+        transition: all 0.3s ease;
+        background-color: #f8fafc;
+        color: #1A253D;
     }
 
     .form-input:focus {
         border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
         outline: none;
         background-color: #ffffff;
     }
 
+    .form-input::placeholder {
+        color: #94a3b8;
+    }
+
     .login-btn {
         width: 100%;
-        background-color: #1A253D;
+        background: linear-gradient(135deg, #1A253D 0%, #2d3b5a 100%);
         color: white;
         border: none;
-        padding: 0.875rem;
-        font-size: 1rem;
-        border-radius: 8px;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 12px;
         cursor: pointer;
-        margin-top: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        box-shadow: 
+            0 4px 6px rgba(26, 37, 61, 0.2),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+            0 6px 8px rgba(26, 37, 61, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .login-btn:active {
+        transform: translateY(0);
+    }
+
+    .register-link {
+        color: #3b82f6;
+        text-decoration: none;
         font-weight: 600;
         transition: all 0.2s ease;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 6px rgba(26, 37, 61, 0.2);
     }
 
-    .invalid-feedback {
-        color: #ef4444;
-        font-size: 0.85rem;
-        margin-top: 0.25rem;
-        display: none;
-    }
-
-    .is-invalid .invalid-feedback {
-        display: block;
+    .register-link:hover {
+        color: #2563eb;
+        text-decoration: underline;
     }
 
     .error-list {
-        background-color: #fee2e2;
-        border-radius: 6px;
-        padding: 0.75rem 1rem;
+        background: rgba(254, 226, 226, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
         margin-top: 1.5rem;
         border-left: 4px solid #ef4444;
+        box-shadow: 0 4px 6px rgba(239, 68, 68, 0.1);
     }
 
     .error-item {
         color: #b91c1c;
         font-size: 0.875rem;
         margin: 0.375rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .error-item::before {
+        content: '⚠️';
+    }
+
+    @keyframes gradientMove {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(-50%, -50%); }
+        100% { transform: translate(0, 0); }
+    }
+
+    @keyframes backgroundMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-50%, -50%); }
     }
 </style>
 
 <div class="login-page">
-    <div class="left-side">
-        <img src="{{ asset('images/SALFORD.png') }}" alt="Logo">
+    <div class="login-left">
+        <img src="{{ asset('images/SALFORD.png') }}" alt="Logo" class="login-logo">
         <h2 class="university-title">INOVATECH UNIVERSITY</h2>
         <p class="university-tagline">Shaping the future one moment at a time.</p>
     </div>
 
-    <div class="right-side">
+    <div class="login-right">
         <div class="login-card">
             <h1 class="login-title">Welcome Back!</h1>
             <p class="login-subtitle">Sign in to access your account</p>

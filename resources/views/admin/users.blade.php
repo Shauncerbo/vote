@@ -28,21 +28,105 @@
         font: bold;
     }
 
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid #ddd;
+    }
 
+    .card-header {
+        background: #fafbfc;
+        border-bottom: 1px solid #eee;
+        padding: 1rem 1.5rem;
+    }
+
+    .card-body {
+        background: #fff;
+        padding: 1.5rem;
+    }
+
+    .table th, .table td {
+        vertical-align: middle !important;
+        border-top: none !important;
+        border-bottom: 1px solid #eee !important;
+    }
+
+    .table thead th {
+        background: #f8f9fa;
+        font-weight: 600;
+        border-bottom: 2px solid #e5e7eb !important;
+    }
+
+    .table tbody tr {
+        transition: background 0.2s;
+    }
+
+    .table tbody tr:hover {
+        background: #f6f8fa;
+    }
 
     .dataTables_filter input {
-    border-radius: 20px !important; /* Make it rounded */
-    border: 1px solid #ccc;
-    padding: 8px 15px;
-    outline: none;
-    width: 200px;
-    transition: all 0.3s ease;
-    margin-bottom: 10px;
-}
+        border-radius: 20px !important;
+        border: 1px solid #ccc;
+        padding: 8px 15px;
+        outline: none;
+        width: 200px;
+        transition: all 0.3s ease;
+        margin-bottom: 10px;
+    }
 
+    .btn-primary, .btn-warning, .btn-danger, .btn-secondary {
+        border-radius: 6px;
+        font-weight: 500;
+    }
 
+    .btn-primary {
+        background: #2563eb;
+        border: none;
+    }
 
+    .btn-primary:hover {
+        background: #1d4ed8;
+    }
 
+    .btn-warning {
+        background: #fbbf24;
+        border: none;
+        color: #fff;
+    }
+
+    .btn-warning:hover {
+        background: #f59e42;
+    }
+
+    .btn-danger {
+        background: #ef4444;
+        border: none;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background: #dc2626;
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+        border: none;
+        color: #fff;
+    }
+
+    .btn-secondary:hover {
+        background: #495057;
+    }
+
+    .badge-na {
+        background: #6c757d;
+        color: #fff;
+        border-radius: 8px;
+        padding: 2px 10px;
+        font-size: 0.9em;
+        font-weight: 500;
+    }
 </style>
 
 @include('admin.modals.addUser-modal')
@@ -75,7 +159,7 @@
         <div class="card-body">
          
            
-            <table id="UsersTable" class="table table-bordered ">
+            <table id="UsersTable" class="table">
                 <thead>
    
                     <tr>
@@ -95,11 +179,20 @@
                         <td>{{$user->Sex ?? 'N/A'}}</td>
                         <td>{{$user->ContactNumber ?? 'N/A'}}</td>
                         <td>{{$user->email ?? 'N/A'}}</td>
-                        <td>{{$user->userType->userType_name ?? 'N/A'}}</td>
+                        <td>
+                            @if($user->userType->userType_name ?? false)
+                                {{$user->userType->userType_name}}
+                            @else
+                                <span class="badge-na">N/A</span>
+                            @endif
+                        </td>
                         <td>{{$user->department->department_name ?? 'N/A'}}</td>
                         <td>
-                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            <div class="btn-group" role="group">
+                                <a href="#" class="btn btn-warning btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')" title="Delete"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-secondary btn-sm" title="More"><i class="fas fa-ellipsis-h"></i></button>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
