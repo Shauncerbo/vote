@@ -1,19 +1,19 @@
 @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css'])
 
 <nav class="navbar-homepage">
-    <div class="logo-text-container">
-        <img src="{{ asset('images/SALFORD.png') }}" alt="Your Logo" class="navbar-logo">
-        <div class="nav-text">
-            <h1 class="nav-name">INOVATECH UNIVERSITY</h1>
-            <p class="nav-subname">Shaping the future, one byte at a time.</p>
-        </div>
+    <img src="{{ asset('images/SALFORD.png') }}" alt="Logo" class="navbar-logo">
+
+    <div class="nav-text sticky-top bg-body-tertiary">
+        <h1 class="nav-name">INOVATECH UNIVERSITY</h1>
+        <p class="nav-subname">Shaping the future, one byte at a time.</p>
     </div>
+
 
     @unless (isset($hideLinks) && $hideLinks)
         <div class="nav-links">
-            <!-- <a class="active" href="{{ route('homepage') }}">Home</a>
+            <a class="active" href="{{ route('homepage') }}">Home</a>
             <a class="active-LogIn" href="{{ route('login') }}">Sign In</a>
             <a class="active-SignUp" href="{{ route('show.signup') }}">Sign up</a>
-        </div> -->
+        </div>
     @endunless
 </nav>
