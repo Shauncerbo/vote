@@ -1,4 +1,5 @@
 @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/department-admin.css'])
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 @include('department-admin.sidebar')
 
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
@@ -92,7 +93,9 @@
                         <td>{{$election->department->department_name ?? 'N/A'}}</td>
                         <td>
                             <a href="{{ route('manage-election', $election->election_id) }}" class="btn btn-info btn-sm">Manage</a>
+                            <a href="{{ route('view-results', $election->election_id) }}" class="btn btn-success btn-sm mb-1">View Results</a>
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                           
                         </td>
                     </tr>
                     @endforeach
@@ -112,4 +115,26 @@
     $(document).ready(function() {
         $('#UsersTable').DataTable(); 
     });
+
+    
 </script>
+
+@if (session('error') || $errors->any())
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = new bootstrap.Modal(document.getElementById('addElectionModal'));
+            modal.show();
+        });
+    </script>
+@endif
+
+
+@if(session('success'))
+<script>
+    window.addEventListener('load', function () {
+        var toastEl = document.getElementById('approvalToast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    });
+</script>
+@endif

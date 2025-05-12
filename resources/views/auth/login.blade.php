@@ -2,6 +2,8 @@
 
 @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/homepage.css'])
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 <style>
     html, body {
         overflow: hidden;
@@ -103,13 +105,31 @@
         letter-spacing: 0.3px;
     }
 
-    .form-input {
-        width: 100%;
-        padding: 1rem 1.25rem;
-        border: 2px solid #e2e8f0;
-        border-radius: 12px;
+    .input-wrapper {
+        position: relative;
+        width: 100%; /* Ensure the wrapper takes the full width of the input */
+    }
+
+    .input-icon {
+        position: absolute;
+        top: 50%; /* Center the icon vertically */
+        left: 15px; /* Position the icon inside the input box */
+        transform: translateY(-50%); /* Adjust for vertical centering */
+        color: #94a3b8;
         font-size: 1rem;
-        transition: all 0.3s ease;
+        pointer-events: none; /* Prevent the icon from blocking input clicks */
+        z-index: 1; /* Ensure the icon appears above the input field */
+    }
+
+    .form-input {
+        padding-left: 45px; /* Add enough padding to make space for the icon */
+        width: 100%; /* Ensure the input field takes full width */
+        box-sizing: border-box; /* Include padding in width calculation */
+        height: 48px; /* Ensure consistent height */
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
         background-color: #f8fafc;
         color: #1A253D;
     }
@@ -202,6 +222,7 @@
     }
 </style>
 
+
 <div class="login-page">
     <div class="login-left">
         <img src="{{ asset('images/SALFORD.png') }}" alt="Logo" class="login-logo">
@@ -219,13 +240,19 @@
 
                 <div class="input-group">
                     <label for="email" class="form-label">Email Address</label>
-                    <input type="email" name="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i> <!-- Email icon -->
+                        <input type="email" name="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+                    </div>
                     <div class="invalid-feedback">Please enter a valid email address.</div>
                 </div>
 
                 <div class="input-group">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" id="password" class="form-input" placeholder="••••••••" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i> <!-- Password icon -->
+                        <input type="password" name="password" id="password" class="form-input" placeholder="••••••••" required>
+                    </div>
                     <div class="invalid-feedback">Please enter your password.</div>
                 </div>
 

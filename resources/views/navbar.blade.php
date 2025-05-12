@@ -11,9 +11,9 @@
 
     @unless (isset($hideLinks) && $hideLinks)
         <div class="nav-links">
-            <a class="active" href="{{ route('homepage') }}">Home</a>
+            <!-- <a class="active" href="{{ route('homepage') }}">Home</a>
             <a class="active-LogIn" href="{{ route('login') }}">Sign In</a>
-            <a class="active-SignUp" href="{{ route('show.signup') }}">Sign up</a>
+            <a class="active-SignUp" href="{{ route('show.signup') }}">Sign up</a> -->
         </div>
     @endunless
 </nav>
